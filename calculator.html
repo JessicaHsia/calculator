@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/calculator.css">
+    <title>Calculator-JH</title>
+</head>
+
+<body>
+    <div class="container">
+        <ul class="history">
+        </ul>
+        <div class="output">
+            <input type="text" placeholder="0" readonly>
+        </div>
+        <div class="btns">
+            <button onclick="cln()" class="sp">C</button>
+            <button onclick="del()" class="sp">DEL</button>
+            <button onclick="insert('%')" class="sp">%</button>
+            <button onclick="insert('/')" class="sp">/</button>
+            <button onclick="insert('7')" class="sp">7</button>
+            <button onclick="insert('8')" class="sp">8</button>
+            <button onclick="insert('9')" class="sp">9</button>
+            <button onclick="insert('*')" class="sp">＊</button>
+            <button onclick="insert('4')" class="sp">4</button>
+            <button onclick="insert('5')" class="sp">5</button>
+            <button onclick="insert('6')" class="sp">6</button>
+            <button onclick="insert('-')" class="sp">-</button>
+            <button onclick="insert('1')" class="sp">1</button>
+            <button onclick="insert('2')" class="sp">2</button>
+            <button onclick="insert('3')" class="sp">3</button>
+            <button onclick="insert('+')" class="sp">+</button>
+            <button onclick="insert('0')" class="sp">0</button>
+            <button onclick="insert('.')" class="sp">.</button>
+            <button onclick="calSum()" class="sp">=</button>
+        </div>
+
+    </div>
+
+    <script src="./calculator.js"></script>
+
+</body>
+
+</html>
