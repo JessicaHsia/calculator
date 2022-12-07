@@ -22,16 +22,17 @@ function insert(e) {
     showLink.value += e;
     //歷史紀錄區顯示所有數字
     historyList.innerHTML += `${e}`;
-    
+
     //每三位數加入一個逗號
     //每個數字的小數點只能有一個
     //運算符不得連續出現
     //0、00不得為數字數字開頭(小數點除外)
+    let num = showLink.value.slice(0, -1);
 
     if (showLink.value == 0 && showLink.value == '') {
         showLink.value = '';
-    }
-    let num = showLink.value.slice(0, -1);
+    } 
+
     switch (e) {
         case '+':
             showLink.value = '';//清空input
@@ -57,7 +58,11 @@ function insert(e) {
             numStringArray.push('/');//將運算子存於陣列中
             console.log(numStringArray);
             break;
-
+        case '%':
+            let pNum = num / 100;
+            showLink.value = pNum;
+            console.log(numStringArray);
+            break;
     }
 }
 //排除可能
@@ -71,14 +76,15 @@ function calSum() {
         sentStr(); //將numStringArray送入陣列
         answer();
     }
-   
+
 }
 //將陣列的運算式算出來
-function answer(){
+function answer() {
     var numAnswer = eval(numStringArray.join(''));//將arry物件型態轉成string後進行陣列運算
     var answer = parseFloat(numAnswer);//將計算出來的值轉為字串
     console.log("arr of function calSum: " + answer);
     historyList.innerHTML += `= ${answer} <br>`;
+    console.log(numStringArray);
     numStringArray = [];//清空陣列可重新開啟新的運算
 }
 
