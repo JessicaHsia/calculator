@@ -10,10 +10,10 @@ function cln() {
     numStringArray = [];
 };
 
-//按del 清空input值 歷史紀錄不會清空
+//按del 刪除最後一次的輸入動作
 function del() {
-    console.log(showLink.value);
-    let linkLength = showLink.value.length;
+    showLink.value = showLink.value.slice(0, -1);
+    historyList.innerHTML = historyList.innerHTML.slice(0, -1);
 }
 
 //按計算區
@@ -22,6 +22,7 @@ function insert(e) {
     showLink.value += e;
     //歷史紀錄區顯示所有數字
     historyList.innerHTML += `${e}`;
+    
     //每三位數加入一個逗號
     //每個數字的小數點只能有一個
     //運算符不得連續出現
@@ -30,7 +31,7 @@ function insert(e) {
     if (showLink.value == 0 && showLink.value == '') {
         showLink.value = '';
     }
-    let num = showLink.value.slice(0, -1);//取出數字部分
+    let num = showLink.value.slice(0, -1);
     switch (e) {
         case '+':
             showLink.value = '';//清空input
@@ -59,24 +60,31 @@ function insert(e) {
 
     }
 }
-//將陣列的運算式算出來
+//排除可能
 function calSum() {
     var num = Number(numStringArray[numStringArray.length - 1]);
-    if (isNaN(num) && showLink == "") {  //如果陣列最後的值是運算式或是小數點且calstr沒有值
+    if (isNaN(num) && showLink.value == "") {  //如果陣列最後的值是運算式或是小數點且showLink沒有值
         numStringArray.pop();
+        historyList.innerHTML = historyList.innerHTML.slice(0, -1);
+        answer();
     } else {
-        sentStr(); //將calStr送入陣列
+        sentStr(); //將numStringArray送入陣列
+        answer();
     }
-    var arrAnswer = eval(numStringArray.join(""));
-    var strAnswer = parseFloat(arrAnswer).toPrecision(12); //處理小數精度問題
-    var answer = parseFloat(strAnswer);
-    //var answer = eval(numStringArray.join("")); //陣列運算
-    console.log("arr of function calSum: " + answer);
-    historyList.innerHTML += "=" + answer;
+   
 }
-//當按下運算符按紐時將數字送入arr的陣列
+//將陣列的運算式算出來
+function answer(){
+    var numAnswer = eval(numStringArray.join(''));//將arry物件型態轉成string後進行陣列運算
+    var answer = parseFloat(numAnswer);//將計算出來的值轉為字串
+    console.log("arr of function calSum: " + answer);
+    historyList.innerHTML += `= ${answer} <br>`;
+    numStringArray = [];//清空陣列可重新開啟新的運算
+}
+
+//當按下運算符按紐時將數字送入numStringArry的陣列
 function sentStr() {
-    if (showLink.value != "") {  //避免送空值到arr
+    if (showLink.value != "") {  //避免送空值到showLink.value
         numStringArray.push(showLink.value);
         showLink.value = "";
     }

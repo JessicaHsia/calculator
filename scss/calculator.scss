@@ -24,6 +24,17 @@ ul, li{
     align-items: center;
     justify-content: center;
     // background-color: lightgray;
+    .history{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        width: 50%;
+        min-height: 30px;
+        font-size: 15px;
+        color: darkblue;
+    }
     .output{
         width: 300px;
         display: flex;
@@ -60,15 +71,5 @@ ul, li{
             }
         }
     }
-    .history{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        width: 50%;
-        height: 30px;
-        font-size: 15px;
-        color: darkblue;
-    }
+   
 }
